@@ -2,9 +2,9 @@
   "name": "image-shrink",
   "version": "0.1.0",
   "description": "Application to optimize images for the web and beyond",
-  "main": "main.js",
+  "main": "./src/main.js",
   "scripts": {
-    "start": "electron ./src"
+    "start": "electron ./src/main.js"
   },
   "keywords": [],
   "author": "@frankluongo",
