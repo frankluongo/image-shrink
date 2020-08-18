@@ -1,15 +1,12 @@
-require("dotenv");
 const { app, BrowserWindow, Menu } = require("electron");
-const { getPlatform, isDev } = require("./backend/utils");
-const { fileMenu } = require("./backend/config/menus");
+const { isDev, isMac } = require("./backend/utils");
+const { menu } = require("./backend/config/menus");
 const globalShortcuts = require("./backend/config/globalShortcuts");
-
-const platform = getPlatform(process.platform);
 
 app.on("ready", createMainWindow);
 
 app.on("window-all-closed", () => {
-  if (platform !== "mac") app.quit();
+  if (isMac) app.quit();
 });
 
 app.on("activate", () => {
@@ -28,7 +25,7 @@ function createMainWindow() {
     height: 600,
     resizable: isDev,
   });
-  const mainMenu = Menu.buildFromTemplate(fileMenu);
+  const mainMenu = Menu.buildFromTemplate(menu);
   Menu.setApplicationMenu(mainMenu);
   globalShortcuts(mainWindow);
   mainWindow.loadFile(`./frontend/index.html`);

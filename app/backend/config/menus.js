@@ -1,25 +1,20 @@
-const { app } = require("electron");
-const { getPlatform } = require("../utils");
-const platform = getPlatform(process.platform);
+const { isMac, isDev } = require("../utils");
 
-const isMac = platform === "mac";
-const macMenu = isMac ? [{ role: "appMenu" }] : [];
-const closeCommand = isMac ? "Command+W" : "Ctrl+Q";
-
-exports.fileMenu = [
-  ...macMenu,
+const appMenu = [{ role: "appMenu" }];
+const fileMenu = [{ role: "fileMenu" }];
+const devMenu = [
   {
-    label: "File",
+    label: "Developer",
     submenu: [
-      {
-        label: "Quit",
-        accelerator: closeCommand,
-        click: onQuit,
-      },
+      { role: "reload" },
+      { role: "forcereload" },
+      { type: "separator" },
+      { role: "toggleDevTools" },
     ],
   },
 ];
 
-function onQuit() {
-  app.quit();
-}
+const showMacMenu = isMac ? appMenu : [];
+const showDevMenu = isDev ? devMenu : [];
+
+exports.menu = [...showMacMenu, ...fileMenu, ...showDevMenu];
