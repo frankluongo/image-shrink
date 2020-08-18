@@ -1,4 +1,4 @@
-exports.getPlatform = (platform) => {
+const getPlatform = (platform) => {
   let os;
   switch (platform) {
     case "darwin":
@@ -16,3 +16,9 @@ exports.getPlatform = (platform) => {
   }
   return os;
 };
+
+exports.getPlatform = getPlatform;
+
+exports.isMac = getPlatform(process.platform) === "mac";
+
+exports.isDev = process.env.NODE_ENV !== "production";

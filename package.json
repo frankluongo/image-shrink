@@ -2,15 +2,16 @@
   "name": "image-shrink",
   "version": "0.1.0",
   "description": "Application to optimize images for the web and beyond",
-  "main": "./src/main.js",
+  "main": "./app/main.js",
   "scripts": {
-    "start": "electron ./src/main.js",
-    "dev": "nodemon --exec electron ./src/main.js"
+    "start": "electron ./app/main.js",
+    "dev": "nodemon --exec NODE_ENV=development electron ./app/main.js"
   },
   "keywords": [],
   "author": "@frankluongo",
   "license": "MIT",
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "electron": "^9.2.0",
     "nodemon": "^2.0.4"
   }

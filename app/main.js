@@ -1,10 +1,9 @@
+require("dotenv");
 const { app, BrowserWindow, Menu } = require("electron");
-const { getPlatform } = require("./utils");
-const { fileMenu } = require("./config/menus");
+const { getPlatform, isDev } = require("./backend/utils");
+const { fileMenu } = require("./backend/config/menus");
+const globalShortcuts = require("./backend/config/globalShortcuts");
 
-process.env.NODE_ENV = "production";
-
-const isDev = process.env.NODE_ENV !== "production";
 const platform = getPlatform(process.platform);
 
 app.on("ready", createMainWindow);
@@ -31,5 +30,6 @@ function createMainWindow() {
   });
   const mainMenu = Menu.buildFromTemplate(fileMenu);
   Menu.setApplicationMenu(mainMenu);
-  mainWindow.loadFile(`./app/index.html`);
+  globalShortcuts(mainWindow);
+  mainWindow.loadFile(`./frontend/index.html`);
 }

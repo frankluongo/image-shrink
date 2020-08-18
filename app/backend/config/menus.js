@@ -2,7 +2,9 @@ const { app } = require("electron");
 const { getPlatform } = require("../utils");
 const platform = getPlatform(process.platform);
 
-const macMenu = platform === "mac" ? [{ role: "appMenu" }] : [];
+const isMac = platform === "mac";
+const macMenu = isMac ? [{ role: "appMenu" }] : [];
+const closeCommand = isMac ? "Command+W" : "Ctrl+Q";
 
 exports.fileMenu = [
   ...macMenu,
@@ -11,6 +13,7 @@ exports.fileMenu = [
     submenu: [
       {
         label: "Quit",
+        accelerator: closeCommand,
         click: onQuit,
       },
     ],
