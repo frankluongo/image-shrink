@@ -1,7 +1,6 @@
 const { app, BrowserWindow, Menu } = require("electron");
 const { isDev, isMac } = require("./backend/utils");
 const { menu } = require("./backend/config/menus");
-const globalShortcuts = require("./backend/config/globalShortcuts");
 
 app.on("ready", createMainWindow);
 
@@ -27,6 +26,15 @@ function createMainWindow() {
   });
   const mainMenu = Menu.buildFromTemplate(menu);
   Menu.setApplicationMenu(mainMenu);
-  globalShortcuts(mainWindow);
   mainWindow.loadFile(`./frontend/index.html`);
+}
+
+function createAboutWindow() {
+  const aboutWindow = new BrowserWindow({
+    title: "Image Shrink",
+    width: 300,
+    height: 300,
+    resizable: false,
+  });
+  aboutWindow.loadFile(`./frontend/index.html`);
 }
