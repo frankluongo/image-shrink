@@ -7,9 +7,68 @@
       http-equiv="Content-Security-Policy"
       content="script-src 'self' 'unsafe-inline'"
     />
+    <link rel="stylesheet" href="./styles/reset.css" />
+    <link rel="stylesheet" href="./styles/app.css" />
     <title>ImageShrink</title>
   </head>
-  <body>
-    HELLO
+  <body class="app">
+    <header class="app-header">
+      <h1 class="app-header__h1">ImageShrink</h1>
+      <p class="app-header__p">Choose and Image To Resize</p>
+    </header>
+    <main class="app-main">
+      <form class="app-main__form app-main-form" data-form>
+        <section class="app-main-form__field-group app-main-form__file">
+          <button class="app-main-form-file__button" type="button">
+            <span class="app-main-form-file__browse-text">Browse</span>
+            <input
+              class="app-main-form-file__file-input"
+              type="file"
+              name="photo"
+              id="photo"
+            />
+          </button>
+          <input
+            class="app-main-form-file__path"
+            type="text"
+            name="filePath"
+            id="filePath"
+            placeholder="Upload File"
+          />
+        </section>
+        <section class="app-main-form__field-group app-main-form__quality">
+          <header class="app-main-form-quality__header">
+            <label class="app-main-form-quality-header__label" for="quality">
+              Quality
+            </label>
+            <em class="app-main-form-quality-header__emphasis">
+              The lower the quality, the smaller the file size
+            </em>
+          </header>
+          <input
+            class="app-main-form-quality__slider"
+            type="range"
+            name="quality"
+            id="quality"
+            min="0"
+            max="100"
+            data-quality
+          />
+        </section>
+        <section class="app-main-form__field-group app-main-form__submit">
+          <input
+            class="app-main-form-submit__button"
+            type="submit"
+            value="Resize"
+          />
+        </section>
+      </form>
+      <section class="app-main__card app-main-card">
+        <div class="app-main-card__content">
+          Output Path: <span data-output></span>
+        </div>
+      </section>
+    </main>
+    <footer class="app-footer"></footer>
   </body>
 </html>
