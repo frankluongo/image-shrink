@@ -28,6 +28,7 @@ function ImageShrink() {
   }
 
   function onPhotoChange() {
+    if (photo.files.length < 1) return;
     const imgPath = photo.files[0].path;
     file.value = imgPath;
   }
