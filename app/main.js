@@ -1,21 +1,28 @@
-const { app, BrowserWindow, Menu } = require("electron");
+const { app, BrowserWindow, Menu, ipcMain } = require("electron");
 const { isDev, isMac } = require("./backend/utils");
 const { menu } = require("./backend/config/menus");
 
 // I'm getting a glitchy screen so I had to use this to stop that
 app.disableHardwareAcceleration();
 
+//
+// App Events
+//
 app.on("ready", createMainWindow);
-
 app.on("window-all-closed", () => {
   if (isMac) app.quit();
 });
-
 app.on("activate", () => {
   if (BrowserWindow.getAllWindows().length === 0) {
     createMainWindow();
   }
 });
+
+//
+// IPC Events
+//
+
+ipcMain.on("image:minimize", onImageMin);
 
 //
 // Functions
@@ -34,4 +41,8 @@ function createMainWindow() {
   const mainMenu = Menu.buildFromTemplate(menu);
   Menu.setApplicationMenu(mainMenu);
   mainWindow.loadFile(`./frontend/index.html`);
+}
+
+function onImageMin(_, { imgPath, quality }) {
+  console.log(imgPath, quality);
 }
