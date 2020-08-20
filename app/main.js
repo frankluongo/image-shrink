@@ -2,6 +2,9 @@ const { app, BrowserWindow, Menu } = require("electron");
 const { isDev, isMac } = require("./backend/utils");
 const { menu } = require("./backend/config/menus");
 
+// I'm getting a glitchy screen so I had to use this to stop that
+app.disableHardwareAcceleration();
+
 app.on("ready", createMainWindow);
 
 app.on("window-all-closed", () => {
@@ -20,21 +23,15 @@ app.on("activate", () => {
 function createMainWindow() {
   const mainWindow = new BrowserWindow({
     title: "Image Shrink",
-    width: 500,
+    width: isDev ? 1200 : 500,
     height: 600,
     resizable: isDev,
+    webPreferences: {
+      nodeIntegration: true,
+    },
   });
+  if (isDev) mainWindow.webContents.openDevTools();
   const mainMenu = Menu.buildFromTemplate(menu);
   Menu.setApplicationMenu(mainMenu);
   mainWindow.loadFile(`./frontend/index.html`);
-}
-
-function createAboutWindow() {
-  const aboutWindow = new BrowserWindow({
-    title: "Image Shrink",
-    width: 300,
-    height: 300,
-    resizable: false,
-  });
-  aboutWindow.loadFile(`./frontend/index.html`);
 }
