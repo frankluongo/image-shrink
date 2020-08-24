@@ -8,7 +8,7 @@ const slash = require("slash");
 
 const defaultDest = path.join(os.homedir(), "imageshrink");
 
-function ImageMin() {
+function ImageMin(mainWindow) {
   ipcMain.on("image:minimize", onImageMin);
 
   function onImageMin(_, { imgPath, quality, dest }) {
@@ -29,6 +29,7 @@ function ImageMin() {
       });
       console.log(files);
       shell.openPath(destination);
+      mainWindow.webContents.send("image:done");
     } catch (e) {
       console.log(e);
     }

@@ -19,13 +19,6 @@ app.on("activate", () => {
     createMainWindow();
   }
 });
-
-//
-// IPC Events
-//
-
-ImageMin();
-
 //
 // Functions
 //
@@ -43,4 +36,5 @@ function createMainWindow() {
   const mainMenu = Menu.buildFromTemplate(menu);
   Menu.setApplicationMenu(mainMenu);
   mainWindow.loadFile(`./frontend/index.html`);
+  ImageMin(mainWindow);
 }

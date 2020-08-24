@@ -13,6 +13,7 @@ function ImageShrink() {
   output.innerText = path.join(os.homedir(), "imageshrink");
   photo.addEventListener("change", onPhotoChange);
   form.addEventListener("submit", onSubmit);
+  ipcRenderer.on("image:done", onPhotoResized);
 
   // Functions
   function onSubmit(e) {
@@ -31,6 +32,10 @@ function ImageShrink() {
     if (photo.files.length < 1) return;
     const imgPath = photo.files[0].path;
     file.value = imgPath;
+  }
+
+  function onPhotoResized() {
+    console.log("done");
   }
 }
 
