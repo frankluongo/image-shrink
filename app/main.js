@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, ipcMain } = require("electron");
+const { app, BrowserWindow, Menu } = require("electron");
 const { isDev, isMac } = require("./backend/utils");
 const { menu } = require("./backend/config/menus");
 

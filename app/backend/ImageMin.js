@@ -5,6 +5,7 @@ const imagemin = require("imagemin");
 const imageminMozjpeg = require("imagemin-mozjpeg");
 const imageminPngquant = require("imagemin-pngquant");
 const slash = require("slash");
+const log = require("electron-log");
 
 const defaultDest = path.join(os.homedir(), "imageshrink");
 
@@ -27,11 +28,11 @@ function ImageMin(mainWindow) {
           }),
         ],
       });
-      console.log(files);
+      log.info(files);
       shell.openPath(destination);
       mainWindow.webContents.send("image:done");
     } catch (e) {
-      console.log(e);
+      log.error(e);
     }
   }
 }
