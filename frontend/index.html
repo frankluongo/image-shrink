@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' 'unsafe-inline'"
+    />
+    <link rel="stylesheet" href="./styles/reset.css" />
+    <link rel="stylesheet" href="./styles/app.css" />
+    <title>ImageShrink</title>
+  </head>
+  <body class="app">
+    <header class="app-header">
+      <h1 class="app-header__h1">ImageShrink</h1>
+      <p class="app-header__p">Choose and Image To Resize</p>
+    </header>
+    <main class="app-main">
+      <form class="app-main__form app-main-form" data-form>
+        <section class="app-main-form__field-group app-main-form__file">
+          <button class="app-main-form__custom-button" type="button">
+            <span class="app-main-form__custom-button-text">Browse Files</span>
+            <input
+              class="app-main-form__custom-button-input"
+              type="file"
+              name="photo"
+              id="photo"
+              data-photo
+              multiple
+            />
+          </button>
+          <div class="app-main-form__table-wrapper">
+            <div class="app-main-form__table-inner">
+              <table class="app-main-form-file__table app-main-form-file-table">
+                <thead>
+                  <tr class="app-main-form-file-table__heading-row">
+                    <th class="app-main-form-file-table__heading">File</th>
+                    <th class="app-main-form-file-table__heading">Location</th>
+                  </tr>
+                </thead>
+                <tbody data-files></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+        <section class="app-main-form__field-group app-main-form__dimensions">
+          <header
+            class="app-main-form__header app-main-form-dimensions__header"
+          >
+            <label
+              class="app-main-form__label app-main-form-dimensions-header__label"
+              for="dimensions"
+            >
+              Width
+            </label>
+            <em class="app-main-form-dimensions-header__emphasis">
+              Resize the width of the photo(s)
+            </em>
+          </header>
+          <div class="app-main-form-dimensions__row">
+            <label for="shouldChangeDimensions">
+              <input
+                type="checkbox"
+                name="shouldChangeDimensions"
+                id="shouldChangeDimensions"
+                data-change-dimensions
+                aria-label="Change Dimensions"
+              />
+            </label>
+            <input
+              class="app-main-form-dimensions__slider"
+              type="number"
+              name="dimensions"
+              id="dimensions"
+              min="0"
+              value="0"
+              data-dimensions
+            />
+          </div>
+        </section>
+        <section class="app-main-form__field-group app-main-form__quality">
+          <header class="app-main-form__header app-main-form-quality__header">
+            <label
+              class="app-main-form__label app-main-form-quality-header__label"
+              for="quality"
+            >
+              Quality
+            </label>
+            <em class="app-main-form-quality-header__emphasis">
+              The lower the quality, the smaller the file size
+            </em>
+          </header>
+          <input
+            class="app-main-form-quality__slider"
+            type="range"
+            name="quality"
+            id="quality"
+            min="0"
+            max="100"
+            data-quality
+          />
+        </section>
+        <section class="app-main-form__field-group">
+          <header class="app-main-form__header">
+            <label class="app-main-form__label" for="outputDirectory">
+              Custom Output Path
+            </label>
+          </header>
+          <button type="button" class="app-main-form__custom-button">
+            <span class="app-main-form__custom-button-text"> Custom Path </span>
+            <input
+              type="file"
+              name="outputDirectory"
+              id="outputDirectory"
+              webkitdirectory
+              directory
+              class="app-main-form__custom-button-input"
+              data-output-path
+            />
+          </button>
+          <div class="app-main-card__content">
+            Current Output Path:<br />
+            <span data-output></span>
+          </div>
+        </section>
+        <section class="app-main-form__field-group app-main-form__submit">
+          <input
+            class="app-main-form-submit__button"
+            type="submit"
+            value="Resize"
+          />
+        </section>
+      </form>
+    </main>
+    <footer class="app-footer"></footer>
+    <script src="./scripts/app.js"></script>
+  </body>
+</html>

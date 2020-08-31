@@ -2,21 +2,25 @@
   "name": "image-shrink",
   "version": "0.1.0",
   "description": "Application to optimize images for the web and beyond",
-  "main": "./app/main.js",
+  "main": "./main.js",
   "scripts": {
-    "start": "electron ./app/main.js",
-    "dev": "nodemon --exec NODE_ENV=development electron ./app/main.js"
+    "start": "electron ./main.js",
+    "dev": "nodemon --exec electron ./main.js",
+    "package:mac": "electron-packager . ImageShrink --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=releases"
   },
   "keywords": [],
   "author": "@frankluongo",
   "license": "MIT",
   "devDependencies": {
     "electron": "^9.2.0",
+    "electron-packager": "^15.1.0",
     "nodemon": "^2.0.4"
   },
   "dependencies": {
     "electron-log": "^4.2.4",
+    "gm": "^1.23.1",
     "imagemin": "^7.0.1",
+    "imagemin-gm": "^2.0.2",
     "imagemin-mozjpeg": "^9.0.0",
     "imagemin-pngquant": "^9.0.0",
     "slash": "^3.0.0"

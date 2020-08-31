@@ -20,7 +20,7 @@ const devMenu = [
 ];
 
 const showAboutMenu = isMac ? aboutMenu : [];
-const showDevMenu = isDev ? devMenu : [];
+const showDevMenu = devMenu;
 const showMacMenu = isMac ? appMenu : [];
 
 exports.menu = [...showAboutMenu, ...showMacMenu, ...fileMenu, ...showDevMenu];
